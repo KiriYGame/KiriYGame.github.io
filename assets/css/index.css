@@ -4,8 +4,16 @@ body {
 
 #log {
   position:relative;
-  left: 450px;
+  left: 380px;
+  top: 10px;
   border-spacing: 20px;
   border-color: black;
   border-radius: 20px;
+}
+
+#start {
+  position:relative;
+  top: 50px;
+  left: 420px;
+  width: 35%
 }
