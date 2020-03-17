@@ -1,0 +1,11 @@
+body {
+
+}
+
+#log {
+  position:relative;
+  left: 450px;
+  border-spacing: 20px;
+  border-color: black;
+  border-radius: 20px;
+}
