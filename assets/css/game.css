@@ -1,0 +1,13 @@
+#btns {
+   position: fixed;
+   top: 430px;
+   width: 70%;
+   right: 180px;
+}
+
+#btns1 {
+   position: fixed;
+   width: 70%;
+   top: -400px;
+   right: 180px;
+}
