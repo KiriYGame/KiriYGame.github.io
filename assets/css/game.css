@@ -11,3 +11,17 @@
    top: -400px;
    right: 180px;
 }
+
+.btn {
+  position: fixed;
+  width: 5%;
+  top: 350px;
+  right: 10px;
+}
+
+.btn1 {
+  position: fixed;
+  width: 5%;
+  top: 420px;
+  right: 10px;
+}
