@@ -13,6 +13,9 @@ var up = false,
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
+const start = new Image();
+start.src = "assets/images/forstart.png";
+
 const bg = new Image();
 bg.src = "assets/images/ground.png";//земля
 
@@ -93,6 +96,11 @@ function drawGame(){
     ctx.drawImage(panels , 30 , 900, 250, 300);//рисовка панелей
     ctx.drawImage(panels , 30 , -120, 250, 300);//рисовка панелей
 
+
+           if (mana == 100){
+             ctx.drawImage(start,0,0,300,1200);
+           }
+
     ctx.font = "50px Arial"; //hp
     ctx.fillStyle = "red";//hp
     ctx.fillText("HP: "+hp,10,550, 45);//hp
@@ -101,13 +109,7 @@ function drawGame(){
     ctx.fillStyle = "blue";//hp
     ctx.fillText("MANA: "+mana1,10,590, 45);//hp
 
-    ctx.font = "30px Arial"; //hp
-    ctx.fillStyle = "red";//hp
-    ctx.fillText("ВОЛАН ДЕ МОРТ",x,y, 40);//hp
-
     ctx.drawImage(pl,x,y,40,150); //pers
-
-
 }
 
 
