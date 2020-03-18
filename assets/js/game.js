@@ -63,13 +63,13 @@ function drawGame(){
   //   MOVE
 
   if (up){
-    y=y-4;
+    y=y-5;
   }
   if (right){
     x=x+1;
   }
   if (down){
-    y=y+4;
+    y=y+5;
   }
   if (left){
     x=x-1;
