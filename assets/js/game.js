@@ -86,4 +86,4 @@ function drawGame(){
 
 
 window.requestAnimationFrame(drawGame);
-let game = setInterval(drawGame,100);//вызов функции каждые 100мс
+let game = setInterval(drawGame,25);//вызов функции каждые 100мс
