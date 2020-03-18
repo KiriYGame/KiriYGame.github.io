@@ -18,6 +18,8 @@ bg.src = "assets/images/ground.png";//земля
 const panels = new Image();
 panels.src = "assets/images/btns.png"; //panel
 
+const pl = new Image();
+pl.src = "assets/images/pl1.png"; //panel
 
 
 
@@ -57,17 +59,6 @@ function release(e){
 
 
 function drawGame(){
-  ctx.drawImage(bg , 0 , 0);//рисовка bg
-
-  ctx.font = "30px Arial"; //hp
-  ctx.fillStyle = "red";//hp
-  ctx.fillText("HP: "+hp,10,550, 20);//hp
-
-  ctx.fillStyle = "green"; //pers
-  ctx.fillRect(x,y,15,50); //pers
-
-  ctx.drawImage(panels , 30 , 420, 250, 300);//рисовка панелей
-  ctx.drawImage(panels , 30 , -120, 250, 300);//рисовка панелей
 
   //   MOVE
 
@@ -82,7 +73,25 @@ function drawGame(){
   }
   if (left){
     x=x-1;
-  }}
+  }
+
+     //draw
+
+  ctx.drawImage(bg , 0 , 5);//рисовка bg
+
+  ctx.font = "30px Arial"; //hp
+  ctx.fillStyle = "red";//hp
+  ctx.fillText("HP: "+hp,10,550, 40);//hp
+
+  ctx.font = "30px Arial"; //hp
+  ctx.fillStyle = "red";//hp
+  ctx.fillText("ВОЛАН ДЕ МОРТ",x,y, 40);//hp
+  
+  ctx.drawImage(pl,x,y,40,150); //pers
+
+  ctx.drawImage(panels , 30 , 900, 250, 300);//рисовка панелей
+  ctx.drawImage(panels , 30 , -120, 250, 300);//рисовка панелей
+}
 
 
 window.requestAnimationFrame(drawGame);
