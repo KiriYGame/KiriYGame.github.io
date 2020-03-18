@@ -1,10 +1,16 @@
 var hp = 100;
-var mana = 100;
+var mana = 101;
 var x = 200;
 var y = 400;
 var up = false,
     right = false,
     down = false,
+    coinW = 40,
+    coinH = 15,
+    coinX = 50,
+    coinY = 300,
+    playerW = 40,
+    coinRls = 1,
     left = false;
 
 
@@ -12,6 +18,10 @@ var up = false,
 
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
+
+const coin = new Image();
+coin.src = "assets/images/vk.png";
+coin.status = true;
 
 const start = new Image();
 start.src = "assets/images/forstart.png";
@@ -97,7 +107,7 @@ function drawGame(){
     ctx.drawImage(panels , 30 , -120, 250, 300);//рисовка панелей
 
 
-           if (mana == 100){
+           if (mana == 101){
              ctx.drawImage(start,0,0,300,1200);
            }
 
@@ -109,8 +119,19 @@ function drawGame(){
     ctx.fillStyle = "blue";//hp
     ctx.fillText("MANA: "+mana1,10,590, 45);//hp
 
+    if(coinRls == 1){
+    ctx.drawImage(coin,coinX,coinY,30,200); //pers
+  }
     ctx.drawImage(pl,x,y,40,150); //pers
+
+ if(coinRls == 1){
+    if(x + playerW >= coinX && x + playerW <= coinX + coinW) {
+ coinRls = 0;
+ mana = mana + 50;
 }
+ }
+}
+
 
 
 window.requestAnimationFrame(drawGame);
