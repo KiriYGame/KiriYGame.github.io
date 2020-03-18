@@ -1,17 +1,3 @@
-#btns {
-   position: fixed;
-   top: 430px;
-   width: 70%;
-   right: 180px;
-}
-
-#btns1 {
-   position: fixed;
-   width: 70%;
-   top: -400px;
-   right: 180px;
-}
-
 .btn {
   position: fixed;
   width: 5%;
@@ -24,4 +10,26 @@
   width: 5%;
   top: 420px;
   right: 10px;
+}
+
+body, html
+{
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+}
+
+.wrapper
+{
+    width: 100%;
+    height: 100%;
+}
+
+#myCanvas
+{
+    width: 100%;
+    height: 100%;
+    background: #000;
 }
