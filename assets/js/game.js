@@ -11,6 +11,7 @@ var up = false,
     coinY = 300,
     playerW = 40,
     coinRls = 1,
+    coins = 0;
     left = false;
 
 
@@ -20,8 +21,7 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
 const coin = new Image();
-coin.src = "assets/images/vk.png";
-coin.status = true;
+coin.src = "assets/images/coin.png";
 
 const start = new Image();
 start.src = "assets/images/forstart.png";
@@ -115,9 +115,13 @@ function drawGame(){
     ctx.fillStyle = "red";//hp
     ctx.fillText("HP: "+hp,10,550, 45);//hp
 
-    ctx.font = "50px Arial"; //hp
-    ctx.fillStyle = "blue";//hp
-    ctx.fillText("MANA: "+mana1,10,590, 45);//hp
+    ctx.font = "50px Arial";
+    ctx.fillStyle = "blue";
+    ctx.fillText("MANA: "+mana1,10,590, 45);
+
+    ctx.font = "50px Arial";
+    ctx.fillStyle = "yellow";
+    ctx.fillText("MONEY: "+coins,10,630, 45);
 
     if(coinRls == 1){
     ctx.drawImage(coin,coinX,coinY,30,200); //pers
@@ -128,6 +132,7 @@ function drawGame(){
     if(x + playerW >= coinX && x + playerW <= coinX + coinW) {
  coinRls = 0;
  mana = mana + 50;
+ coins++;
 }
  }
 }
