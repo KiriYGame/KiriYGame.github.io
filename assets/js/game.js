@@ -1,6 +1,6 @@
 var hp = 100;
-var x = 10;
-var y = 10;
+var x = 200;
+var y = 200;
 var up = false,
     right = false,
     down = false,
@@ -86,7 +86,7 @@ function drawGame(){
   ctx.font = "30px Arial"; //hp
   ctx.fillStyle = "red";//hp
   ctx.fillText("ВОЛАН ДЕ МОРТ",x,y, 40);//hp
-  
+
   ctx.drawImage(pl,x,y,40,150); //pers
 
   ctx.drawImage(panels , 30 , 900, 250, 300);//рисовка панелей
