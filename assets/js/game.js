@@ -1,6 +1,7 @@
 var hp = 100;
+var mana = 100;
 var x = 200;
-var y = 200;
+var y = 400;
 var up = false,
     right = false,
     down = false,
@@ -61,36 +62,52 @@ function release(e){
 function drawGame(){
 
   //   MOVE
-
+  if (mana >= 0.2){
   if (up){
     y=y-5;
+    mana = mana-0.2
+    mana1 = Math.round(mana);
   }
   if (right){
     x=x+1;
+    mana=mana-0.2;
+    mana1 = Math.round(mana);
   }
   if (down){
     y=y+5;
+    mana=mana-0.2;
+    mana1 = Math.round(mana);
   }
   if (left){
     x=x-1;
+    mana=mana-0.2;
+    mana1 = Math.round(mana);
+  } } else {
+    mana=0;
   }
 
-     //draw
+       //draw
 
-  ctx.drawImage(bg , 0 , 5);//рисовка bg
+    ctx.drawImage(bg , 0 , 5);//рисовка bg
 
-  ctx.font = "30px Arial"; //hp
-  ctx.fillStyle = "red";//hp
-  ctx.fillText("HP: "+hp,10,550, 40);//hp
+    ctx.drawImage(panels , 30 , 900, 250, 300);//рисовка панелей
+    ctx.drawImage(panels , 30 , -120, 250, 300);//рисовка панелей
 
-  ctx.font = "30px Arial"; //hp
-  ctx.fillStyle = "red";//hp
-  ctx.fillText("ВОЛАН ДЕ МОРТ",x,y, 40);//hp
+    ctx.font = "50px Arial"; //hp
+    ctx.fillStyle = "red";//hp
+    ctx.fillText("HP: "+hp,10,550, 45);//hp
 
-  ctx.drawImage(pl,x,y,40,150); //pers
+    ctx.font = "50px Arial"; //hp
+    ctx.fillStyle = "blue";//hp
+    ctx.fillText("MANA: "+mana1,10,590, 45);//hp
 
-  ctx.drawImage(panels , 30 , 900, 250, 300);//рисовка панелей
-  ctx.drawImage(panels , 30 , -120, 250, 300);//рисовка панелей
+    ctx.font = "30px Arial"; //hp
+    ctx.fillStyle = "red";//hp
+    ctx.fillText("ВОЛАН ДЕ МОРТ",x,y, 40);//hp
+
+    ctx.drawImage(pl,x,y,40,150); //pers
+
+
 }
 
 
