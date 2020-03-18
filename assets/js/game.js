@@ -6,6 +6,9 @@ var up = false,
     down = false,
     left = false;
 
+
+
+
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
@@ -13,8 +16,12 @@ const bg = new Image();
 bg.src = "assets/images/ground.png";//земля
 
 const panels = new Image();
-panels.src = "assets/images/btns.png" //panels
+panels.src = "assets/images/btns.png"; //panel
 
+
+
+
+    //   MOVE
 document.addEventListener('keydown',press)
 function press(e){
   if (e.keyCode === 87 /* w */){
@@ -28,8 +35,8 @@ function press(e){
   }
   if (e.keyCode === 65 /* a */ ){
     left = true
-  }
-}
+  }}
+
 document.addEventListener('keyup',release)
 function release(e){
   if (e.keyCode === 87 /* w */ ){
@@ -45,6 +52,9 @@ function release(e){
     left = false
   }
 }
+
+
+
 
 function drawGame(){
   ctx.drawImage(bg , 0 , 0);//рисовка bg
@@ -62,17 +72,18 @@ function drawGame(){
   //   MOVE
 
   if (up){
-    y=y-6;
+    y=y-4;
   }
   if (right){
-    x=x+2;
+    x=x+1;
   }
   if (down){
-    y=y+6;
+    y=y+4;
   }
   if (left){
-    x=x-2;
-  }
-}
+    x=x-1;
+  }}
+
+
 window.requestAnimationFrame(drawGame);
-let game = setInterval(drawGame,50);//вызов функции каждые 100мс
+let game = setInterval(drawGame,25);//вызов функции каждые 100мс
