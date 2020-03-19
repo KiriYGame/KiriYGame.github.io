@@ -26,6 +26,8 @@ var ctx = canvas.getContext("2d");
 const coin = new Image();
 coin.src = "assets/images/coin.png";
 
+const plr1 = new Image();
+
 const shop = new Image();
 shop.src = "assets/images/shop.png";
 
@@ -92,23 +94,28 @@ function drawGame(){
     y=y-6;
     mana = mana-moveM;
     mana1 = Math.round(mana);
+    plr1.src = "assets/images/pl/plr4.png";
   }
   if (right){
     x=x+1;
     mana=mana-moveM;
     mana1 = Math.round(mana);
+    plr1.src = "assets/images/pl/plr3.png";
   }
   if (down){
     y=y+6;
     mana=mana-moveM;
     mana1 = Math.round(mana);
+    plr1.src = "assets/images/pl/plr1.png";
   }
   if (left){
     x=x-1;
     mana=mana-moveM;
     mana1 = Math.round(mana);
+    plr1.src = "assets/images/pl/plr2.png";
   } } else {
     mana=0;
+    plr1.src = "assets/images/pl/plr1.png";
   }
 
        //draw
@@ -135,6 +142,8 @@ function drawGame(){
     ctx.fillStyle = "yellow";
     ctx.fillText("MONEY: "+coins,10,630, 45);
 
+    ctx.drawImage(plr1,x,y,playerW,300); //pers
+
     if(coinRls == 1){
     ctx.drawImage(coin,coinX,coinY,30,200); //pers
   }
@@ -142,8 +151,7 @@ function drawGame(){
 
     ctx.drawImage(shop,shopX,shopY,30,200); //pers
 
-
-    ctx.drawImage(pl,x,y,playerW,150); //pers
+  ctx.drawImage(plr1,x,y,playerW,300); //pers
 
  if(coinRls == 1){
     if(x + playerW >= coinX && x + playerW <= coinX + coinW) {
