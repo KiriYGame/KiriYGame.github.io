@@ -91,25 +91,25 @@ function drawGame(){
   //   MOVE
   if (mana >= 0.2){
   if (up){
-    y=y-6;
+    y=y-6.7;
     mana = mana-moveM;
     mana1 = Math.round(mana);
     plr1.src = "assets/images/pl/plr4.png";
   }
   if (right){
-    x=x+1;
+    x=x+1.1;
     mana=mana-moveM;
     mana1 = Math.round(mana);
     plr1.src = "assets/images/pl/plr3.png";
   }
   if (down){
-    y=y+6;
+    y=y+6.7;
     mana=mana-moveM;
     mana1 = Math.round(mana);
     plr1.src = "assets/images/pl/plr1.png";
   }
   if (left){
-    x=x-1;
+    x=x-1.1;
     mana=mana-moveM;
     mana1 = Math.round(mana);
     plr1.src = "assets/images/pl/plr2.png";
