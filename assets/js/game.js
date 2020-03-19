@@ -3,6 +3,7 @@ var mana = 101;
 var x = 100;
 var y = 400;
 var up = false,
+    shopbg = 0;
     col = false;
     shopX = 220;
     shopY = 600;
@@ -25,6 +26,9 @@ var ctx = canvas.getContext("2d");
 
 const coin = new Image();
 coin.src = "assets/images/coin.png";
+
+const shop2 = new Image();
+shop2.src = "assets/images/shop2.png";
 
 const plr1 = new Image();
 
@@ -62,6 +66,9 @@ function press(e){
   if (e.keyCode === 13 /* a */){
     enter = true
   }
+  if (e.keyCode === 27 /* a */){
+    esc = true
+  }
 }
 
 document.addEventListener('keyup',release)
@@ -80,6 +87,9 @@ function release(e){
   }
   if (e.keyCode === 13 /* a */){
     enter = false
+  }
+  if (e.keyCode === 27 /* a */){
+    esc = false
   }
 }
 
@@ -132,15 +142,15 @@ function drawGame(){
 
     ctx.font = "50px Arial"; //hp
     ctx.fillStyle = "red";//hp
-    ctx.fillText("HP: "+hp,10,550, 45);//hp
+    ctx.fillText("HP: "+hp,5,550, 45);//hp
 
     ctx.font = "50px Arial";
     ctx.fillStyle = "blue";
-    ctx.fillText("MANA: "+mana1,10,590, 45);
+    ctx.fillText("MANA: "+mana1,5,590, 45);
 
     ctx.font = "50px Arial";
     ctx.fillStyle = "yellow";
-    ctx.fillText("MONEY: "+coins,10,630, 45);
+    ctx.fillText("MONEY: "+coins,5,630, 45);
 
     ctx.drawImage(plr1,x,y,playerW,300); //pers
 
@@ -169,10 +179,23 @@ function drawGame(){
       ctx.fillText("PRESS ENTER",x,y, 45);
 
       if(enter){
-
+          shopbg = 1;
           coinRls = 1;
                }
 }
+}
+
+if (shopbg == 1) {
+  ctx.drawImage(shop2 , 55, 220, 200, 800);
+  ctx.font = "60px Arial";
+  ctx.fillStyle = "black";
+  ctx.fillText("Зелье маны (+200)          стоимость - 3",70,300, 170);
+  ctx.fillText("Увеличение скорости        стоимость - 3",70,350, 170);
+  ctx.fillText("Зелье здоровья (+50)       стоимость - 3",70,400, 170);
+  ctx.fillText("                   Выход (Esc)",85,900, 80);
+   if(esc) {
+     shopbg = 0;
+   }
 }
 
 if(x + playerW >= shopX && x + playerW <= shopX + shopW) {
