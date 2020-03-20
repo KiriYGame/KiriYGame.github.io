@@ -15,9 +15,12 @@ var up = false,
     coinH = 15,
     coinX = 50,
     coinY = 300,
+    btcol = false;
+    btcX = 150;
+    btcY = 600;
     playerW = 40,
     coinRls = 1,
-    coins = 0;
+    coins =  0;
     boostX = 0;
     boostY = 0;
     shopW = 30;
@@ -35,6 +38,9 @@ shop2.src = "assets/images/shop2.png";
 
 const arrow2 = new Image();
 arrow2.src = "assets/images/arrow2.png";
+
+const btc = new Image();
+btc.src = "assets/images/btncoin.png";
 
 const plr1 = new Image();
 
@@ -177,6 +183,7 @@ function drawGame(){
     ctx.drawImage(coin,coinX,coinY,30,200); //pers
   }
 
+    ctx.drawImage(btc,btcX,btcY,30,200); //pers
 
     ctx.drawImage(shop,shopX,shopY,30,200); //pers
 
@@ -204,6 +211,14 @@ function drawGame(){
 }
 }
 
+ if(coinRls == 0) {
+   if(btcol) {
+     if(enter) {
+       coinRls = coinRls + 1;
+     }
+   }
+ }
+
 if (shopbg == 1) {
   ctx.drawImage(shop2 , 55, 220, 200, 800);
   ctx.font = "60px Arial";
@@ -226,6 +241,11 @@ if (shopbg == 1) {
  } else if(chs == 2){
    var chs1 = 250;
       ctx.drawImage(arrow,37,chs1,30,200); //pers
+      if (enter & coins >= 10) {
+        boostX = boostX + 0.4;
+        boostY = boostY + 5;
+        coins = coins - 10;
+      }
  } else if(chs == 3){
    var chs1 = 300;
       ctx.drawImage(arrow,37,chs1,30,200); //pers
@@ -238,6 +258,12 @@ if (shopbg == 1) {
  if(esc) {
    shopbg = 0;
  }
+}
+
+if(x + playerW >= btcX && x + playerW <= btcX + 30) {
+  btcol = true;
+} else {
+  btcol = false;
 }
 
 if(x + playerW >= shopX && x + playerW <= shopX + shopW) {
