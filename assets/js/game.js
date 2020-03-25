@@ -14,6 +14,7 @@ var up = false,
     coinW = 40,
     coinH = 15,
     coinX = 50,
+    load = 0,
     coinY = 300,
     btcol = false;
     btcX = 150;
@@ -26,6 +27,7 @@ var up = false,
     shopW = 30;
     moveM = 0.2,
     left = false;
+
 
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
@@ -62,6 +64,10 @@ pl.src = "assets/images/pl1.png"; //panel
 const arrow = new Image();
 arrow.src = "assets/images/arrow.png"; //panel
 
+
+function save(){
+
+}
 
     //   MOVE
 document.addEventListener('keydown',press)
@@ -249,30 +255,31 @@ if (shopbg == 1) {
  } else if(chs == 3){
    var chs1 = 300;
       ctx.drawImage(arrow,37,chs1,30,200); //pers
+      if (enter & coins >= 7) {
+        hp = hp + 50;
+        coins = coins - 7;
+      }
  } else if(chs == 4){
    chs = 1;
  } else if(chs == 0){
    chs = 3;
  }
-
  if(esc) {
    shopbg = 0;
- }
-}
+ }}
+
+
 
 if(x + playerW >= btcX && x + playerW <= btcX + 30) {
   btcol = true;
 } else {
-  btcol = false;
-}
+  btcol = false;}
 
 if(x + playerW >= shopX && x + playerW <= shopX + shopW) {
   col = true;
 } else {
   col = false;
-}
-
-}
+}}
 
 
 window.requestAnimationFrame(drawGame);

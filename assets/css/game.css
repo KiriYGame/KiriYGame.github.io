@@ -33,3 +33,14 @@ body, html
     height: 100%;
     background: #000;
 }
+
+#dange{
+  position: fixed;
+  border: 6px;
+  border-style: dashed;
+  border-spacing: inherit;
+  border-radius: 30px;
+  width: 20%;
+  top: 630px;
+  right: 750px;
+}
