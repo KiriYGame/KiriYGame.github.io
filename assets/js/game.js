@@ -1,32 +1,55 @@
-var hp = 100;
-var mana = 101;
-var x = 100;
-var y = 400;
-var up = false,
-    chs = 1;
-    shopbg = 0;
-    col = false;
-    shopX = 220;
-    shopY = 600;
-    right = false,
-    down = false,
-    enter = false;
-    coinW = 40,
-    coinH = 15,
-    coinX = 50,
-    load = 0,
-    coinY = 300,
-    btcol = false;
-    btcX = 150;
-    btcY = 600;
-    playerW = 40,
-    coinRls = 1,
-    coins =  0;
-    boostX = 0;
-    boostY = 0;
-    shopW = 30;
-    moveM = 0.2,
-    left = false;
+var  hp = 100;
+var  mana = 101;
+var bullets = 0;
+var  x = 100;
+var  y = 400;
+var  up = false;
+var  chs = 1;
+var  shopbg = 0;
+var  col = false;
+var  shopX = 220;
+var  shopY = 600;
+var  right = false;
+var  down = false;
+var  enter = false;
+var  coinW = 40;
+var  coinH = 15;
+var  coinX = 50;
+var  load = 0;
+var  coinY = 300;
+var  btcol = false;
+var  btcX = 150;
+var  btcY = 600;
+var  playerW = 40;
+var  coinRls = 1;
+var  coins =  0;
+var  boostX = 0;
+var  boostY = 0;
+var  shopW = 30;
+var  moveM = 0.2;
+var  left = false;
+var dif = 0;
+
+var ply = JSON.parse(localStorage.getItem("ply"));
+ if(ply[6]==1){
+   coins = ply[0];
+   mana = ply[1];
+   bullets = ply[2];
+   hp = ply[3];
+   boostX = ply[4];
+   boostY = ply[5];
+ }
+
+var html = document.documentElement;
+function fullScreen(element) {
+  if(element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if(element.webkitrequestFullscreen) {
+    element.webkitRequestFullscreen();
+  } else if(element.mozRequestFullscreen) {
+    element.mozRequestFullScreen();
+  }
+}
 
 
 var canvas = document.getElementById("myCanvas");
@@ -49,9 +72,6 @@ const plr1 = new Image();
 const shop = new Image();
 shop.src = "assets/images/shop.png";
 
-const start = new Image();
-start.src = "assets/images/forstart.png";
-
 const bg = new Image();
 bg.src = "assets/images/ground.png";//земля
 
@@ -66,8 +86,18 @@ arrow.src = "assets/images/arrow.png"; //panel
 
 
 function save(){
-
+  dif = 1;
+  ply[0] = coins;
+  ply[1] = mana;
+  ply[2] = bullets;
+  ply[3] = hp;
+  ply[4] = boostX;
+  ply[5] = boostY;
+  ply[6] = dif;
+localStorage.setItem("ply", JSON.stringify(ply));
 }
+
+
 
     //   MOVE
 document.addEventListener('keydown',press)
@@ -86,9 +116,6 @@ function press(e){
   }
   if (e.keyCode === 13 /* a */){
     enter = true;
-  }
-  if (e.keyCode === 27 /* a */){
-    esc = true;
   }
   if (e.keyCode === 38 /* a */){
     chs--;
@@ -129,30 +156,29 @@ function release(e){
 
 function drawGame(){
 
+fullScreen(html);
+mana1 = Math.round(mana);
+
   //   MOVE
   if (mana >= 0.2){
   if (up){
     y=y-(6.7 + boostY);
     mana = mana-moveM;
-    mana1 = Math.round(mana);
     plr1.src = "assets/images/pl/plr4.png";
   }
   if (right){
     x=x+(1.1 + boostX);
     mana=mana-moveM;
-    mana1 = Math.round(mana);
     plr1.src = "assets/images/pl/plr3.png";
   }
   if (down){
     y=y+(6.7 + boostY);
     mana=mana-moveM;
-    mana1 = Math.round(mana);
     plr1.src = "assets/images/pl/plr1.png";
   }
   if (left){
     x=x-(1.1 + boostX);
     mana=mana-moveM;
-    mana1 = Math.round(mana);
     plr1.src = "assets/images/pl/plr2.png";
   } } else {
     mana=0;
@@ -167,10 +193,6 @@ function drawGame(){
     ctx.drawImage(panels , 30 , -120, 250, 300);//рисовка панелей
 
 
-           if (mana == 101){
-             ctx.drawImage(start,0,0,300,1200);
-           }
-
     ctx.font = "50px Arial"; //hp
     ctx.fillStyle = "red";//hp
     ctx.fillText("HP: "+hp,5,550, 45);//hp
@@ -183,8 +205,6 @@ function drawGame(){
     ctx.fillStyle = "yellow";
     ctx.fillText("MONEY: "+coins,5,630, 45);
 
-    ctx.drawImage(plr1,x,y,playerW,300); //pers
-
     if(coinRls == 1){
     ctx.drawImage(coin,coinX,coinY,30,200); //pers
   }
@@ -193,7 +213,7 @@ function drawGame(){
 
     ctx.drawImage(shop,shopX,shopY,30,200); //pers
 
-  ctx.drawImage(plr1,x,y,playerW,300); //pers
+    ctx.drawImage(plr1,x,y,playerW,300); //pers
 
  if(coinRls == 1){
     if(x + playerW >= coinX && x + playerW <= coinX + coinW) {
@@ -225,14 +245,17 @@ function drawGame(){
    }
  }
 
+
+
 if (shopbg == 1) {
+
   ctx.drawImage(shop2 , 55, 220, 200, 800);
   ctx.font = "60px Arial";
   ctx.fillStyle = "yellow";
   ctx.fillText("Зелье маны (+200)          стоимость - 3",70,300, 170);
   ctx.fillText("Увеличение скорости        стоимость - 10",70,350, 170);
   ctx.fillText("Зелье здоровья (+50)       стоимость - 7",70,400, 170);
-  ctx.fillText("                   Выход (Esc)",85,900, 80);
+  ctx.fillText("                   Выход ",90,900, 80);
 
 
  ctx.drawImage(arrow2, 200, 720, 40,300);
@@ -258,14 +281,17 @@ if (shopbg == 1) {
       if (enter & coins >= 7) {
         hp = hp + 50;
         coins = coins - 7;
-      }
- } else if(chs == 4){
+      }} else if(chs == 4) {
+        var chs1 = 800;
+        ctx.drawImage(arrow,107,chs1,30,200); //pers
+        if (enter){
+          shopbg = 0;
+        }
+    }
+  else if(chs == 5){
    chs = 1;
  } else if(chs == 0){
-   chs = 3;
- }
- if(esc) {
-   shopbg = 0;
+   chs = 4;
  }}
 
 

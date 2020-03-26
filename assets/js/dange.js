@@ -1,33 +1,48 @@
-var canvas = document.getElementById("myCanvas");
+var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-var  hp = 100;
-var  mana = 101;
+var ply = JSON.parse(localStorage.getItem("ply"));
+
+var html = document.documentElement;
+
+function fullScreen(element) {
+  if(element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if(element.webkitrequestFullscreen) {
+    element.webkitRequestFullscreen();
+  } else if(element.mozRequestFullscreen) {
+    element.mozRequestFullScreen();
+  }
+}
+
+function save(){
+  ply[0] = coins;
+  ply[1] = mana;
+  ply[2] = bullets;
+  ply[3] = hp;
+  ply[4] = boostX;
+  ply[5] = boostY;
+localStorage.setItem("ply", JSON.stringify(ply));
+}
+
+var  hp = ply[3];
+var  mana = ply[1];
 var  x = 100;
 var  y = 400;
 var  up = false;
 var  chs = 1;
 var  shopbg = 0;
 var  col = false;
-var  shopX = 220;
-var  shopY = 600;
 var  right = false;
 var  down = false;
 var  enter = false;
-var  coinW = 40;
-var  coinH = 15;
-var  coinX = 50;
 var  load = 0;
 var  coinY = 300;
 var  btcol = false;
-var  btcX = 150;
-var  btcY = 600;
 var  playerW = 40;
-var  coinRls = 1;
-var  coins =  0;
-var  boostX = 0;
-var  boostY = 0;
-var  shopW = 30;
+var  coins =  ply[0];
+var  boostX = ply[4];
+var  boostY = ply[5];
 var  moveM = 0.2;
 var  left = false;
 
@@ -37,7 +52,7 @@ const coin = new Image();
 coin.src = "assets/images/coin.png";
 
 const bg = new Image();
-bg.src = "assets/images/ground.png";//земля
+bg.src = "assets/images/ground2.jpg";//земля
 
 const panels = new Image();
 panels.src = "assets/images/btns.png"; //panel
@@ -74,8 +89,7 @@ chs++;
 }
 if (e.keyCode === 70 /* a */){
 f = true;
-}
-}
+}}
 
 document.addEventListener('keyup',release)
 function release(e){
@@ -99,10 +113,56 @@ esc = false
 }
 if (e.keyCode === 70 /* a */){
 f = false;
-}
+}}
 
 function draw(){
-  ctx.font = "50px Arial";
-  ctx.fillStyle = "yellow";
-  ctx.fillText("MONEY: "+coins,5,630, 45);
+  fullScreen(html);
+mana1 = Math.round(mana);
+
+  if (mana >= 0.2){
+  if (up){
+    y=y-(6.7 + boostY);
+    mana = mana-moveM;
+    plr1.src = "assets/images/pl/plr4.png";
+  }
+  if (right){
+    x=x+(1.1 + boostX);
+    mana=mana-moveM;
+    plr1.src = "assets/images/pl/plr3.png";
+  }
+  if (down){
+    y=y+(6.7 + boostY);
+    mana=mana-moveM;
+    plr1.src = "assets/images/pl/plr1.png";
+  }
+  if (left){
+    x=x-(1.1 + boostX);
+    mana=mana-moveM;
+    plr1.src = "assets/images/pl/plr2.png";
+  } } else {
+    mana=0;
+    plr1.src = "assets/images/pl/plr1.png";
+  }
+
+
+   ctx.drawImage(bg , 0 , 5, 300, 1200);//рисовка bg
+
+   ctx.drawImage(panels , 30 , 900, 250, 300);//рисовка панелей
+   ctx.drawImage(panels , 30 , -120, 250, 300);//рисовка панелей
+   ctx.drawImage(plr1,x,y,playerW,300); //pers
+
+   ctx.font = "50px Arial";
+   ctx.fillStyle = "yellow";
+   ctx.fillText("MONEY: "+coins,5,630, 45);
+
+   ctx.font = "50px Arial"; //hp
+   ctx.fillStyle = "red";//hp
+   ctx.fillText("HP: "+hp,5,550, 45);//hp
+
+   ctx.font = "50px Arial";
+   ctx.fillStyle = "blue";
+   ctx.fillText("MANA: "+mana1,5,590, 45);
 }
+
+window.requestAnimationFrame(draw);
+let game = setInterval(draw,25);//вызов функции каждые 100мс
