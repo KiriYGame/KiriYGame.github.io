@@ -28,7 +28,6 @@ var  boostY = 0;
 var  shopW = 30;
 var  moveM = 0.2;
 var  left = false;
-var dif = 0;
 
 var ply = JSON.parse(localStorage.getItem("ply"));
 dif = ply[6];
@@ -87,7 +86,8 @@ arrow.src = "assets/images/arrow.png"; //panel
 
 
 function save(){
-  dif = 1;
+  let ply = [];
+  var dif = 1;
   ply[0] = coins;
   ply[1] = mana;
   ply[2] = bullets;
@@ -156,7 +156,7 @@ function release(e){
 
 
 function drawGame(){
-
+save();
 fullScreen(html);
 mana1 = Math.round(mana);
 
