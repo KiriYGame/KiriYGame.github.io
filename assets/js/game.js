@@ -1,5 +1,5 @@
 var  hp = 100;
-var  mana = 101;
+var  mana = 100;
 var bullets = 0;
 var  x = 100;
 var  y = 400;
@@ -31,7 +31,8 @@ var  left = false;
 var dif = 0;
 
 var ply = JSON.parse(localStorage.getItem("ply"));
- if(ply[6]==1){
+dif = ply[6];
+ if(dif==1){
    coins = ply[0];
    mana = ply[1];
    bullets = ply[2];
