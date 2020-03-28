@@ -203,6 +203,10 @@ mana1 = Math.round(mana);
     ctx.fillStyle = "yellow";
     ctx.fillText("MONEY: "+coins,5,630, 45);
 
+    ctx.font = "50px Arial";
+    ctx.fillStyle = "black";
+    ctx.fillText("BULLETS: "+bullets,5,670, 45);
+
     if(coinRls == 1){
     ctx.drawImage(coin,coinX,coinY,30,200); //pers
   }
@@ -253,6 +257,7 @@ if (shopbg == 1) {
   ctx.fillText("Зелье маны (+200)          стоимость - 3",70,300, 170);
   ctx.fillText("Увеличение скорости        стоимость - 10",70,350, 170);
   ctx.fillText("Зелье здоровья (+50)       стоимость - 7",70,400, 170);
+  ctx.fillText("Патроны (10 шт.)           стоимость - 15",70,450, 170);
   ctx.fillText("                   Выход ",90,900, 80);
 
 
@@ -279,14 +284,22 @@ if (shopbg == 1) {
       if (enter & coins >= 7) {
         hp = hp + 50;
         coins = coins - 7;
-      }} else if(chs == 4) {
+
+      }}else if(chs == 4){
+        var chs1 = 350;
+           ctx.drawImage(arrow,37,chs1,30,200); //pers
+     if (enter & coins >= 15) {
+             bullets = bullets + 10;
+             coins = coins - 15;
+
+     }} else if(chs == 5) {
         var chs1 = 800;
         ctx.drawImage(arrow,107,chs1,30,200); //pers
-        if (enter){
+    if (enter){
           shopbg = 0;
         }
     }
-  else if(chs == 5){
+  else if(chs == 6){
    chs = 1;
  } else if(chs == 0){
    chs = 4;

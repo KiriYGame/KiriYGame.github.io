@@ -162,6 +162,10 @@ mana1 = Math.round(mana);
    ctx.font = "50px Arial";
    ctx.fillStyle = "blue";
    ctx.fillText("MANA: "+mana1,5,590, 45);
+
+   ctx.font = "50px Arial";
+   ctx.fillStyle = "black";
+   ctx.fillText("BULLETS: "+bullets,5,670, 45);
 }
 
 window.requestAnimationFrame(draw);
