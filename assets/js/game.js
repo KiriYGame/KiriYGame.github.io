@@ -1,19 +1,3 @@
-var dif = 0;
-window.onload = function() {
-   var ply = JSON.parse(localStorage.getItem("ply"));
-   dif = ply[6];
-   if (dif == 1){
-     plym = ply;
-     coins = plym[0];
-     mana = plym[1];
-     bullets = plym[2];
-     hp = plym[3];
-     boostX = plym[4];
-     boostY = plym[5];
-     dif = plym[6];
-   }
-};
-
 var  hp = 100;
 var  mana = 100;
 var bullets = 0;
@@ -45,6 +29,15 @@ var  shopW = 30;
 var  moveM = 0.2;
 var  left = false;
 
+var ply = JSON.parse(localStorage.getItem("ply"));
+var referrer = document.referrer;
+if (referrer == "file:///C:/Users/пряник/Documents/GitHub/KiriYGame.github.io/dange.html" || referrer == "https://kiriygame.github.io/dange.html"){
+  var  hp = ply[3];
+  var  mana = ply[1];
+  var  coins =  ply[0];
+  var  boostX = ply[4];
+  var  boostY = ply[5];
+}
 
 var html = document.documentElement;
 function fullScreen(element) {
@@ -92,14 +85,13 @@ arrow.src = "assets/images/arrow.png"; //panel
 
 
 function save(){
-  let ply = plym;
-  plym[0] = coins;
-  plym[1] = mana;
-  plym[2] = bullets;
-  plym[3] = hp;
-  plym[4] = boostX;
-  plym[5] = boostY;
-  ply[6] = 1;
+  let ply = [];
+  ply[0] = coins;
+  ply[1] = mana;
+  ply[2] = bullets;
+  ply[3] = hp;
+  ply[4] = boostX;
+  ply[5] = boostY;
 localStorage.setItem("ply", JSON.stringify(ply));
 }
 
