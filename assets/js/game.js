@@ -246,6 +246,9 @@ mana1 = Math.round(mana);
 
  if(coinRls == 0) {
    if(btcol) {
+     ctx.font = "50px Arial";
+     ctx.fillStyle = "black";
+     ctx.fillText("PRESS ENTER",x,y, 45);
      if(enter) {
        coinRls = coinRls + 1;
      }
@@ -312,12 +315,12 @@ if (shopbg == 1) {
 
 
 
-if(x + playerW >= btcX && x + playerW <= btcX + 30 && y + playerW >= btcY && y + playerW <= btcY + 30) {
+if(x + playerW >= btcX && x + playerW <= btcX + 50 && y + 300 >= btcY && y + 300 <= btcY + 200) {
   btcol = true;
 } else {
   btcol = false;}
 
-if(x + playerW >= shopX && x + playerW <= shopX + shopW && y + playerW >= shopY && y + playerW <= shopY + shopW) {
+if(x + playerW >= shopX && x + playerW <= shopX + 50 && y + 300 >= shopY && y + 300 <= shopY + 200) {
   col = true;
 } else {
   col = false;
