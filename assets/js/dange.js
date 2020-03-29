@@ -16,13 +16,13 @@ function fullScreen(element) {
 }
 
 function save(){
-  ply[0] = coins;
-  ply[1] = mana;
-  ply[2] = bullets;
-  ply[3] = hp;
-  ply[4] = boostX;
-  ply[5] = boostY;
-localStorage.setItem("ply", JSON.stringify(ply));
+  plys[0] = coins;
+  plys[1] = mana;
+  plys[2] = bullets;
+  plys[3] = hp;
+  plys[4] = boostX;
+  plys[5] = boostY;
+localStorage.setItem("plys", JSON.stringify(plys));
 }
 
 var  hp = ply[3];
