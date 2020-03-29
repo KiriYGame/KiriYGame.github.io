@@ -1,6 +1,3 @@
-var  hp = 100;
-var  mana = 100;
-var bullets = 0;
 var  x = 100;
 var  y = 400;
 var  up = false;
@@ -31,12 +28,19 @@ var  left = false;
 
 var ply = JSON.parse(localStorage.getItem("ply"));
 var referrer = document.referrer;
-if (referrer == "file:///C:/Users/пряник/Documents/GitHub/KiriYGame.github.io/dange.html" || referrer == "https://kiriygame.github.io/dange.html"){
+if (referrer == "https://kiriygame.github.io/dange.html"){
   var  hp = ply[3];
   var  mana = ply[1];
   var  coins =  ply[0];
   var  boostX = ply[4];
   var  boostY = ply[5];
+} else {
+  var  hp = 100;
+  var  mana = 100;
+  var bullets = 0;
+  var  coins =  0;
+  var  boostX = 0;
+  var  boostY = 0;
 }
 
 var html = document.documentElement;
