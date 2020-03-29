@@ -223,7 +223,7 @@ mana1 = Math.round(mana);
     ctx.drawImage(plr1,x,y,playerW,300); //pers
 
  if(coinRls == 1){
-    if(x + playerW >= coinX && x + playerW <= coinX + coinW) {
+    if(x + playerW >= coinX && x + playerW <= coinX + coinW && y + 300 >= coinY && y + 300 <= coinY + 200) {
  coinRls = 0;
  mana = mana + 50;
  coins++;
