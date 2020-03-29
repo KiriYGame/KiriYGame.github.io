@@ -312,12 +312,12 @@ if (shopbg == 1) {
 
 
 
-if(x + playerW >= btcX && x + playerW <= btcX + 30) {
+if(x + playerW >= btcX && x + playerW <= btcX + 30 && y + playerW >= btcY && y + playerW <= btcY + 30) {
   btcol = true;
 } else {
   btcol = false;}
 
-if(x + playerW >= shopX && x + playerW <= shopX + shopW) {
+if(x + playerW >= shopX && x + playerW <= shopX + shopW && y + playerW >= shopY && y + playerW <= shopY + shopW) {
   col = true;
 } else {
   col = false;
