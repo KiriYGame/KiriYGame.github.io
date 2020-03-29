@@ -29,14 +29,14 @@ var  shopW = 30;
 var  moveM = 0.2;
 var  left = false;
 
-var plys = JSON.parse(localStorage.getItem("plys"));
+var ply = JSON.parse(localStorage.getItem("ply"));
 var referrer = document.referrer;
 if (referrer == "file:///C:/Users/пряник/Documents/GitHub/KiriYGame.github.io/dange.html" || referrer == "https://kiriygame.github.io/dange.html"){
-  var  hp = plys[3];
-  var  mana = plys[1];
-  var  coins =  plys[0];
-  var  boostX = plys[4];
-  var  boostY = plys[5];
+  var  hp = ply[3];
+  var  mana = ply[1];
+  var  coins =  ply[0];
+  var  boostX = ply[4];
+  var  boostY = ply[5];
 }
 
 var html = document.documentElement;
