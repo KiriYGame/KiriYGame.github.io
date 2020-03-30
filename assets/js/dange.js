@@ -18,13 +18,14 @@ function fullScreen(element) {
 function save(){
   ply[0] = coins;
   ply[1] = mana;
-  ply[2] = bullets;
+  ply[2] = patroni;
   ply[3] = hp;
   ply[4] = boostX;
   ply[5] = boostY;
 localStorage.setItem("plys", JSON.stringify(plys));
 }
 
+var bulletf;
 var  hp = ply[3];
 var  mana = ply[1];
 var  x = 100;
@@ -34,6 +35,7 @@ var  chs = 1;
 var  shopbg = 0;
 var  col = false;
 var  right = false;
+var  patroni = ply[2];
 var  down = false;
 var  enter = false;
 var  load = 0;
@@ -45,8 +47,17 @@ var  boostX = ply[4];
 var  boostY = ply[5];
 var  moveM = 0.2;
 var  left = false;
+var zar = 1;
+
+var bulletWidth = 10;
+var bulletHeight = 40;
+
+var bulletX = x;
+var bulletY = y;
 
 const plr1 = new Image();
+
+const bulletimg = new Image();
 
 const coin = new Image();
 coin.src = "assets/images/coin.png";
@@ -91,6 +102,7 @@ if (e.keyCode === 70 /* a */){
 f = true;
 }}
 
+
 document.addEventListener('keyup',release)
 function release(e){
 if (e.keyCode === 87 /* w */ ){
@@ -115,7 +127,42 @@ if (e.keyCode === 70 /* a */){
 f = false;
 }}
 
-function draw(){
+
+const bullets = [];
+class Bullet {
+   constructor(){
+      this.x = x + 15;
+      this.y = y + 150;
+      bullets.push(this);
+   }
+   draw(){
+     if(bulletf == "up"){
+      this.y = this.y - 35;
+    } else if (bulletf == "down"){
+      this.y = this.y + 35;
+    } else if (bulletf == "left"){
+      this.x = this.x - 13;
+    } else if (bulletf == "right"){
+      this.x = this.x + 13;
+    }
+      if(this.y < 0){
+          bullets.splice(bullets.indexOf(this));
+      }
+      if(this.x < 0){
+          bullets.splice(bullets.indexOf(this));
+      }
+      if(this.y > 1080){
+          bullets.splice(bullets.indexOf(this));
+      }
+      if(this.x > 300){
+          bullets.splice(bullets.indexOf(this));
+      }
+      // fillRect не требует openPath!
+      ctx.drawImage(bulletimg,this.x,this.y,bulletWidth,bulletHeight);
+   }
+}
+
+function drawGame(){
   fullScreen(html);
 mana1 = Math.round(mana);
 
@@ -124,24 +171,29 @@ mana1 = Math.round(mana);
     y=y-(6.7 + boostY);
     mana = mana-moveM;
     plr1.src = "assets/images/pl/plr4.png";
+    bulletf="up";
   }
   if (right){
     x=x+(1.1 + boostX);
     mana=mana-moveM;
     plr1.src = "assets/images/pl/plr3.png";
+    bulletf="right";
   }
   if (down){
     y=y+(6.7 + boostY);
     mana=mana-moveM;
     plr1.src = "assets/images/pl/plr1.png";
+    bulletf="down";
   }
   if (left){
     x=x-(1.1 + boostX);
     mana=mana-moveM;
     plr1.src = "assets/images/pl/plr2.png";
+    bulletf="left";
   } } else {
     mana=0;
     plr1.src = "assets/images/pl/plr1.png";
+    bulletf="down";
   }
 
 
@@ -149,24 +201,52 @@ mana1 = Math.round(mana);
 
    ctx.drawImage(panels , 30 , 900, 250, 300);//рисовка панелей
    ctx.drawImage(panels , 30 , -120, 250, 300);//рисовка панелей
-   ctx.drawImage(plr1,x,y,playerW,300); //pers
+   ctx.drawImage(plr1,x,y,playerW,300); //per
 
    ctx.font = "50px Arial";
    ctx.fillStyle = "yellow";
    ctx.fillText("MONEY: "+coins,5,630, 45);
 
-   ctx.font = "50px Arial"; //hp
    ctx.fillStyle = "red";//hp
    ctx.fillText("HP: "+hp,5,550, 45);//hp
 
-   ctx.font = "50px Arial";
    ctx.fillStyle = "blue";
    ctx.fillText("MANA: "+mana1,5,590, 45);
 
-   ctx.font = "50px Arial";
    ctx.fillStyle = "black";
-   ctx.fillText("BULLETS: "+bullets,5,670, 45);
+   ctx.fillText("BULLETS: "+patroni,5,670, 45);
+
+   bullets.forEach(bullet => bullet.draw());
+
+   ctx.fillStyle = "grey";
+   ctx.fillRect(100,50,zar*100,30);
+
+   if(bulletf == "up"){
+   bulletimg.src = "assets/images/dange/bullet1.png"; //panel
+ } else if(bulletf =="down"){
+   bulletimg.src = "assets/images/dange/bullet3.png"; //panel
+ } else if(bulletf == "right"){
+   bulletimg.src = "assets/images/dange/bullet4.png"; //panel
+ } else if(bulletf == "left"){
+   bulletimg.src = "assets/images/dange/bullet2.png";}
+
+   if(enter) {
+     if(patroni>=1){
+       if(zar>=1){
+   zar--;
+   patroni--;
+   new Bullet();
+ }}}
+if(zar<=1){
+  zar = zar+0.03;
+  ctx.fillStyle = "black"
+  ctx.fillText("ПЕРЕЗАРЯДКА",130,70,50);
 }
 
-window.requestAnimationFrame(draw);
-let game = setInterval(draw,25);//вызов функции каждые 100мс
+
+
+
+}
+
+window.requestAnimationFrame(drawGame);
+let game = setInterval(drawGame,25);//вызов функции каждые 100мс
