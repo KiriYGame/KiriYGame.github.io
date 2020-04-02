@@ -19,16 +19,13 @@ var  btcX = 150;
 var  btcY = 600;
 var  playerW = 40;
 var  coinRls = 1;
-var  coins =  0;
-var  boostX = 0;
-var  boostY = 0;
 var  shopW = 30;
 var  moveM = 0.2;
 var  left = false;
 
 var plys = JSON.parse(localStorage.getItem("plys"));
 var referrer = document.referrer;
-if (referrer == "https://kiriygame.github.io/dange.html" || referrer == "file:///C:/Users/пряник/Documents/GitHub/KiriYGame.github.io/dange.html"){
+if (referrer == "https://kiriygame.github.io/dange.html"){
   var  hp = plys[3];
   var  mana = plys[1];
   var  coins =  plys[0];

@@ -86,6 +86,9 @@ panels.src = "assets/images/btns.png"; //panel
 const pl = new Image();
 pl.src = "assets/images/pl1.png"; //panel
 
+const dead = new Image();
+dead.src = "assets/images/dange/dead.png"; //panel
+
 //   MOVE
 document.addEventListener('keydown',press)
 function press(e){
@@ -324,6 +327,14 @@ if(x + playerW >= enemyX && x + playerW <= enemyX + 50 && y + 100 >= enemyY && y
 
 if(col){
   hp--;
+}
+
+if (hp<=0){
+  hp = 0;
+  ctx.drawImage(dead,0,0,300,1200);
+  if (enter){
+    window.location.reload();
+  }
 }
 //end
 }
