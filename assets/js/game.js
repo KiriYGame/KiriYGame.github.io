@@ -26,22 +26,15 @@ var  shopW = 30;
 var  moveM = 0.2;
 var  left = false;
 
-var ply = JSON.parse(localStorage.getItem("ply"));
+var plys = JSON.parse(localStorage.getItem("plys"));
 var referrer = document.referrer;
 if (referrer == "https://kiriygame.github.io/dange.html"){
-  var  hp = ply[3];
-  var  mana = ply[1];
-  var  coins =  ply[0];
-  var  boostX = ply[4];
-  var  boostY = ply[5];
-  var  bullets = ply[2];
-} else {
-  var  hp = 100;
-  var  mana = 100;
-  var bullets = 0;
-  var  coins =  0;
-  var  boostX = 0;
-  var  boostY = 0;
+  var  hp = plys[3];
+  var  mana = plys[1];
+  var  coins =  plys[0];
+  var  boostX = plys[4];
+  var  boostY = plys[5];
+  var  bullets = plys[2];
 }
 
 var html = document.documentElement;

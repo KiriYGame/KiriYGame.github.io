@@ -16,12 +16,12 @@ function fullScreen(element) {
 }
 
 function save(){
-  ply[0] = coins;
-  ply[1] = mana;
-  ply[2] = patroni;
-  ply[3] = hp;
-  ply[4] = boostX;
-  ply[5] = boostY;
+  plys[0] = coins;
+  plys[1] = mana;
+  plys[2] = patroni;
+  plys[3] = hp;
+  plys[4] = boostX;
+  plys[5] = boostY;
 localStorage.setItem("plys", JSON.stringify(plys));
 }
 
@@ -49,7 +49,7 @@ var mobHP = 100;
 function getRandom(min, max) {
   return Math.random() * (max - min) + min;
 }
-var mobG = getRandom(1, 3);
+var mobG = getRandom(0, 3);
 var mobI = Math.round(mobG);
 function newMOB(){
 mobG = getRandom(1, 3);
