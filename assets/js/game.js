@@ -35,6 +35,13 @@ if (referrer == "https://kiriygame.github.io/dange.html"){
   var  boostX = plys[4];
   var  boostY = plys[5];
   var  bullets = plys[2];
+} else {
+  var  hp = 100;
+  var  mana = 100;
+  var  coins =  0;
+  var  boostX = 0;
+  var  boostY = 0;
+  var  bullets = 0;
 }
 
 var html = document.documentElement;
