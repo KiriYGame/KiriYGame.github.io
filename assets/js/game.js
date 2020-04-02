@@ -28,7 +28,7 @@ var  left = false;
 
 var plys = JSON.parse(localStorage.getItem("plys"));
 var referrer = document.referrer;
-if (referrer == "https://kiriygame.github.io/dange.html"){
+if (referrer == "https://kiriygame.github.io/dange.html" || referrer == "file:///C:/Users/пряник/Documents/GitHub/KiriYGame.github.io/dange.html"){
   var  hp = plys[3];
   var  mana = plys[1];
   var  coins =  plys[0];

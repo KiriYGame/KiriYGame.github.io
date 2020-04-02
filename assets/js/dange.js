@@ -16,6 +16,7 @@ function fullScreen(element) {
 }
 
 function save(){
+  let plys = [];
   plys[0] = coins;
   plys[1] = mana;
   plys[2] = patroni;
