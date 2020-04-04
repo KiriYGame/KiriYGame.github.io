@@ -22,6 +22,7 @@ var  coinRls = 1;
 var  shopW = 30;
 var  moveM = 0.2;
 var  left = false;
+var  gun = 0;
 
 var plys = JSON.parse(localStorage.getItem("plys"));
 var referrer = document.referrer;
@@ -32,6 +33,7 @@ if (referrer == "https://kiriygame.github.io/dange.html"){
   var  boostX = plys[4];
   var  boostY = plys[5];
   var  bullets = plys[2];
+  var  gun = plys[6];
 } else {
   var  hp = 100;
   var  mana = 100;
@@ -39,6 +41,7 @@ if (referrer == "https://kiriygame.github.io/dange.html"){
   var  boostX = 0;
   var  boostY = 0;
   var  bullets = 0;
+  var  gun = 0;
 }
 
 var html = document.documentElement;
@@ -94,6 +97,7 @@ function save(){
   ply[3] = hp;
   ply[4] = boostX;
   ply[5] = boostY;
+  ply[6] = gun;
 localStorage.setItem("ply", JSON.stringify(ply));
 }
 
@@ -162,22 +166,22 @@ mana1 = Math.round(mana);
   //   MOVE
   if (mana >= 0.2){
   if (up){
-    y=y-(6.7 + boostY);
+    y=y-(5.0 + boostY);
     mana = mana-moveM;
     plr1.src = "assets/images/pl/plr4.png";
   }
   if (right){
-    x=x+(1.1 + boostX);
+    x=x+(0.8 + boostX);
     mana=mana-moveM;
     plr1.src = "assets/images/pl/plr3.png";
   }
   if (down){
-    y=y+(6.7 + boostY);
+    y=y+(5.0 + boostY);
     mana=mana-moveM;
     plr1.src = "assets/images/pl/plr1.png";
   }
   if (left){
-    x=x-(1.1 + boostX);
+    x=x-(0.8 + boostX);
     mana=mana-moveM;
     plr1.src = "assets/images/pl/plr2.png";
   } } else {
@@ -222,7 +226,7 @@ mana1 = Math.round(mana);
  if(coinRls == 1){
     if(x + playerW >= coinX && x + playerW <= coinX + coinW && y + 300 >= coinY && y + 300 <= coinY + 200) {
  coinRls = 0;
- mana = mana + 50;
+ mana = mana + 80;
  coins++;
                                                              }
  }
@@ -263,6 +267,7 @@ if (shopbg == 1) {
   ctx.fillText("Увеличение скорости        стоимость - 10",70,350, 170);
   ctx.fillText("Зелье здоровья (+50)       стоимость - 7",70,400, 170);
   ctx.fillText("Патроны (10 шт.)           стоимость - 15",70,450, 170);
+  ctx.fillText("Пистолет            стоимость - 500 маны",70,500, 170);
   ctx.fillText("                   Выход ",90,900, 80);
 
 
@@ -297,17 +302,24 @@ if (shopbg == 1) {
              bullets = bullets + 10;
              coins = coins - 15;
 
-     }} else if(chs == 5) {
+     }}else if(chs == 5) {
+       var chs1 = 400;
+       ctx.drawImage(arrow,37,chs1,30,200); //pers
+       if (enter & mana >= 500){
+         mana = mana-500;
+         gun = 1;
+       }
+     } else if(chs == 6) {
         var chs1 = 800;
         ctx.drawImage(arrow,107,chs1,30,200); //pers
-    if (enter){
-          shopbg = 0;
-        }
+        if (enter){
+              shopbg = 0;
+            }
     }
-  else if(chs == 6){
+  else if(chs == 7){
    chs = 1;
  } else if(chs == 0){
-   chs = 4;
+   chs = 6 ;
  }}
 
 
@@ -325,4 +337,4 @@ if(x + playerW >= shopX && x + playerW <= shopX + 50 && y + 300 >= shopY && y + 
 
 
 window.requestAnimationFrame(drawGame);
-let game = setInterval(drawGame,25);//вызов функции каждые 100мс
+let game = setInterval(drawGame,20);//вызов функции каждые 100мс

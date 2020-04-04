@@ -23,6 +23,7 @@ function save(){
   plys[3] = hp;
   plys[4] = boostX;
   plys[5] = boostY;
+  plys[6] = gun;
 localStorage.setItem("plys", JSON.stringify(plys));
 }
 
@@ -47,13 +48,14 @@ var  moveM = 0.2;
 var  left = false;
 var zar = 1;
 var mobHP = 100;
+var gun = ply[6];
 function getRandom(min, max) {
   return Math.random() * (max - min) + min;
 }
-var mobG = getRandom(0, 3);
+var mobG = getRandom(1, 4);
 var mobI = Math.round(mobG);
 function newMOB(){
-mobG = getRandom(1, 3);
+mobG = getRandom(1, 4);
 mobI = Math.round(mobG);
 }
 
@@ -194,25 +196,25 @@ mana1 = Math.round(mana);
 
   if (mana >= 0.2){
   if (up){
-    y=y-(6.7 + boostY);
+    y=y-(5.0 + boostY);
     mana = mana-moveM;
     plr1.src = "assets/images/pl/plr4.png";
     bulletf="up";
   }
   if (right){
-    x=x+(1.1 + boostX);
+    x=x+(0.7 + boostX);
     mana=mana-moveM;
     plr1.src = "assets/images/pl/plr3.png";
     bulletf="right";
   }
   if (down){
-    y=y+(6.7 + boostY);
+    y=y+(5.0 + boostY);
     mana=mana-moveM;
     plr1.src = "assets/images/pl/plr1.png";
     bulletf="down";
   }
   if (left){
-    x=x-(1.1 + boostX);
+    x=x-(0.7 + boostX);
     mana=mana-moveM;
     plr1.src = "assets/images/pl/plr2.png";
     bulletf="left";
@@ -238,7 +240,7 @@ mana1 = Math.round(mana);
    ctx.fillText("MONEY: "+coins,5,630, 45);
 
    ctx.fillStyle = "red";//hp
-   ctx.fillText("HP: "+hp,5,550, 45);//hp
+   ctx.fillText("HP: "+Math.round(hp),5,550, 45);//hp
 
    ctx.fillStyle = "blue";
    ctx.fillText("MANA: "+mana1,5,590, 45);
@@ -264,12 +266,13 @@ mana1 = Math.round(mana);
    bulletimg.src = "assets/images/dange/bullet2.png";}
 
    if(enter) {
+     if(gun == 1){
      if(patroni>=1){
        if(zar>=1){
    zar--;
    patroni--;
    new Bullet();
- }}}
+ }}}}
 if(zar<=1){
   zar = zar+0.03;
   ctx.fillStyle = "black"
@@ -281,30 +284,34 @@ if(zar<=1){
 
 if (enemyS == 1){
 if (enemyX > x){
-  enemyX = enemyX-0.5;
+  enemyX = enemyX-0.4;
   if(mobI == 1){
     mob.src = "assets/images/dange/slime2.png"; //slime
   } else if(mobI == 2){
     mob.src = "assets/images/dange/zombie1.png"; //slime
   } else if(mobI == 3){
     mob.src = "assets/images/dange/shakal2.png"; //slime
+  } else {
+    mob.src = "assets/images/dange/mish1.png"; //slime
   }
 }
 if(enemyX < x){
-  enemyX = enemyX+0.5;
+  enemyX = enemyX+0.4;
   if(mobI == 1){
     mob.src = "assets/images/dange/slime1.png"; //slime
   } else if(mobI == 2){
     mob.src = "assets/images/dange/zombie2.png"; //slime
   } else if(mobI == 3){
     mob.src = "assets/images/dange/shakal1.png"; //slime
+  } else {
+    mob.src = "assets/images/dange/mish2.png"; //slime
   }
 }
 
 if (enemyY > y){
-  enemyY = enemyY-2.5;
+  enemyY = enemyY-1.5;
 } else if(enemyY < y){
-  enemyY = enemyY+2.5;
+  enemyY = enemyY+1.5;
   }
 }
 
@@ -313,6 +320,7 @@ if(mobHP < 1){
 }
 
 if(enemyS == 0){
+   coins++;
    enemyX = 220;
    enemyY = 600;
    mobHP = 100;
@@ -326,7 +334,9 @@ if(x + playerW >= enemyX && x + playerW <= enemyX + 50 && y + 100 >= enemyY && y
   col = false;}
 
 if(col){
-  hp--;
+  hpx = hp;
+  hpx = hpx - 0.4;
+  hp = hpx;
 }
 
 if (hp<=0){
@@ -340,4 +350,4 @@ if (hp<=0){
 }
 
 window.requestAnimationFrame(drawGame);
-let game = setInterval(drawGame,25);//вызов функции каждые 100мс
+let game = setInterval(drawGame,20);//вызов функции каждые 100мс
