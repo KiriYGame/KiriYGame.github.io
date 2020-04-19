@@ -23,6 +23,7 @@ var  shopW = 30;
 var  moveM = 0.2;
 var  left = false;
 var  gun = 0;
+var buy = 100;
 
 var plys = JSON.parse(localStorage.getItem("plys"));
 var referrer = document.referrer;
@@ -41,7 +42,6 @@ if (referrer == "https://kiriygame.github.io/dange.html"){
   var  boostX = 0;
   var  boostY = 0;
   var  bullets = 0;
-  var  gun = 0;
 }
 
 var html = document.documentElement;
@@ -277,38 +277,41 @@ if (shopbg == 1) {
    if(chs == 1) {
    var chs1 = 200;
    ctx.drawImage(arrow,37,chs1,30,200); //pers
-     if(enter & coins >= 3){
+     if(enter & coins >= 3 & buy >= 99){
       mana = mana + 200;
       coins = coins - 3;
+      buy = buy - 150;
      }
  } else if(chs == 2){
    var chs1 = 250;
       ctx.drawImage(arrow,37,chs1,30,200); //pers
-      if (enter & coins >= 10) {
+      if (enter & coins >= 10 & buy >= 99) {
         boostX = boostX + 0.4;
         boostY = boostY + 5;
         coins = coins - 10;
+         buy = buy - 150;
       }
  } else if(chs == 3){
    var chs1 = 300;
       ctx.drawImage(arrow,37,chs1,30,200); //pers
-      if (enter & coins >= 7) {
+      if (enter & coins >= 7 & buy >= 99) {
         hp = hp + 50;
         coins = coins - 7;
-
+        buy = buy - 150;
       }}else if(chs == 4){
         var chs1 = 350;
            ctx.drawImage(arrow,37,chs1,30,200); //pers
-     if (enter & coins >= 15) {
+     if (enter & coins >= 15 & buy >= 99) {
              bullets = bullets + 10;
              coins = coins - 15;
-
+  buy = buy - 150;
      }}else if(chs == 5) {
        var chs1 = 400;
        ctx.drawImage(arrow,37,chs1,30,200); //pers
-       if (enter & mana >= 500){
+       if (enter & mana >= 500 & buy >= 99){
          mana = mana-500;
          gun = 1;
+           buy = buy - 150;
        }
      } else if(chs == 6) {
         var chs1 = 800;
@@ -323,7 +326,11 @@ if (shopbg == 1) {
    chs = 6 ;
  }}
 
-
+if(buy <= 99){
+  while(buy <= 99){
+    buy = buy + 0.00002;
+  }
+}
 
 if(x + playerW >= btcX && x + playerW <= btcX + 50 && y + 300 >= btcY && y + 300 <= btcY + 200) {
   btcol = true;
