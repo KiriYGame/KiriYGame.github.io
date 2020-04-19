@@ -199,7 +199,7 @@ mana1 = Math.round(mana);
 
     ctx.font = "50px Arial"; //hp
     ctx.fillStyle = "red";//hp
-    ctx.fillText("HP: "+hp,5,550, 45);//hp
+    ctx.fillText("HP: "+Math.round(hp),5,550, 45);//hp
 
     ctx.font = "50px Arial";
     ctx.fillStyle = "blue";
@@ -272,6 +272,7 @@ if (shopbg == 1) {
 
 
  ctx.drawImage(arrow2, 200, 720, 40,300);
+
 
    if(chs == 1) {
    var chs1 = 200;
